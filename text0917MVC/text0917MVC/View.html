@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <div style="width:800px;height:800px;">
+        <h1>条形码与二维码生成工具</h1>
+        <br />
+        <input id="name" type="text" placeholder="输入用于生成条形码或二维码的字符串"/>
+        <br />
+        <input id="btntiao" type="button" value="生成条形码" /><input id="btnerweima" type="button" value="生成二维码" />
+        <img src=""  id="tiao"/><a>下载条形码图片</a><br />
+        <img src="" id="er"/><a>下载二维码图片</a><br />
+
+    </div>
+</body>
+</html>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //点击事件
+            $("#btnerweima").click(function () {
+                var w = $("#wd").val();
+                var h = $("#hg").val();
+                var text = $("#tx").val();
+                $.ajax({
+                    url: "/View/QRcode",
+                    data: "text=" + text + "&width=" + w + "&height=" + h,
+                    type: "post",
+                    dataType:"json",
+                    success: function (e) {
+                        //把条形码赋值给e
+                        $("#tiao").prop("src",e);
+                    }
+                });
+            });
+      })
+                $(document).ready(function () {
+                    //点击事件
+                    $("#btnerweima").click(function () {
+                        var w = $("#wd").val();
+                        var h = $("#hg").val();
+                        var text = $("#tx").val();
+                        $.ajax({
+                            url: "/View/QRcode",
+                            data: "text=" + text + "&width=" + w + "&height=" + h,
+                            type: "post",
+                            dataType: "json",
+                            success: function (e) {
+                                //把条形码赋值给e
+                                $("#tiao").prop("src", e);
+                            }
+                        });
+                    });
+                })
+</script>
